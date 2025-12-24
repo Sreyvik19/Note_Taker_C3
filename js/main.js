@@ -140,8 +140,8 @@ function renderNotes() {
 
     // filter notes
     let fileredNotes = notesData.filter(note => {
-        // Apply search filter 
-        if (searchQuery) {
+        // Apply search filter searchQuery
+        if (search) {
             const searchContent = note.title.toLowerCase() + '' +
                 note.content.toLowerCase() + ' ' +
                 note.content.toLowerCase() + ' ' +
