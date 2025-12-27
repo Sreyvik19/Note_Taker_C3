@@ -1,3 +1,4 @@
+/* All CSS styles remain the same as in your original code */
 * {
     margin: 0;
     padding: 0;
@@ -163,6 +164,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    min-height: 300px;
 }
 
 .note-card {
@@ -259,14 +261,47 @@ body {
 
 .empty-state {
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
     color: #7f8c8d;
+    grid-column: 1 / -1;
 }
 
 .empty-state i {
-    font-size: 48px;
+    font-size: 64px;
     margin-bottom: 15px;
-    color: #ddd;
+    color: #e0e0e0;
+}
+
+.empty-state h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #5f6368;
+}
+
+.empty-state p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-empty-state {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-empty-state:hover {
+    background-color: #0d62d9;
 }
 
 .highlight {

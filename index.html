@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
+
 <body>
     <div class="app-container">
         <div class="app-header">
@@ -13,11 +19,11 @@
             <div class="header-controls">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" name="" id="searchInput" placeholder="Search notes...">
-                    <button class="btn-add-note" id="addNoteBtn">
-                        <i class="fas fa-plus"></i> Add Note
-                    </button>
+                    <input type="text" id="searchInput" placeholder="Search notes...">
                 </div>
+                <button class="btn-add-note" id="addNoteBtn">
+                    <i class="fas fa-plus"></i> Add Note
+                </button>
             </div>
         </div>
 
@@ -26,23 +32,23 @@
                 <h3 class="section-title">All Notes</h3>
                 <ul class="nav-list">
                     <li class="nav-item active" data-filter="all">
-                         <i class="fas fa-clock"></i>Recents
+                        <i class="fas fa-clock"></i> Recents
                     </li>
                     <li class="nav-item" data-filter="favorites">
-                        <i class="fas fa-star"></i>Favorite
+                        <i class="fas fa-star"></i> Favorites
                     </li>
                     <li class="nav-item" data-filter="unified">
-                        <i class="fas fa-layer-group"></i>Unified
+                        <i class="fas fa-layer-group"></i> Unified
                     </li>
                     <li class="nav-item" data-filter="shared">
-                        <i class="fas fa-share-alt"></i>Shared
+                        <i class="fas fa-share-alt"></i> Shared
                     </li>
                 </ul>
 
                 <h3 class="section-title">Notes</h3>
                 <ul class="category-list">
                     <li class="category-item active" data-category="all">
-                        <i class="fas fa-th-large"></i>All Notes
+                        <i class="fas fa-th-large"></i> All Notes
                     </li>
                     <li class="category-item" data-category="gallery">
                         <i class="fas fa-images"></i> Gallery
@@ -80,42 +86,42 @@
             <div class="notes-list">
                 <div class="notes-header">
                     <h2>Notes</h2>
-                    <div class="notes-count">Showing 8 notes</div>
+                    <div id="notes-count">Showing 0 notes</div>
                 </div>
 
-                <div class="notes-gird" id="notes-container">
-                    <!-- NOtes will be dynamically inserted here -->
+                <div class="notes-grid" id="notes-container">
+                    <!-- Notes will be dynamically inserted here -->
                 </div>
 
+                <!-- Download History Section -->
                 <div class="download-history" id="downloadHistory">
                     <div class="download-history-header">
                         <h3>Recent download history</h3>
-                        <button class="clear-downloads-btn" id="download-history">Clear All</button>
+                        <button class="clear-downloads-btn" id="clearDownloadsBtn">Clear All</button>
                     </div>
                     <div class="download-history-list" id="downloadHistoryList">
-                        <!-- Download item will be dynamically inserted here  -->
+                        <!-- Download items will be dynamically inserted here -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> <!-- Add Note Modal -->
     <div class="modal" id="noteModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-header">Add New Note</h3>
+                <h3 id="modalTitle">Add New Note</h3>
                 <button class="close-btn" id="closeModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="note-form" id="noteForm">
-                    <div class="from-group">
+                <form class="note-form" id="noteForm">
+                    <div class="form-group">
                         <label for="noteTitle">Title</label>
-                        <input type="text" name="" id="noteTitle" placeholder="Enter note title" required>
+                        <input type="text" id="noteTitle" placeholder="Enter note title" required>
                     </div>
 
                     <div class="form-group">
                         <label for="noteCategory">Category</label>
-                        <select name="" id="noteCategory">
+                        <select id="noteCategory">
                             <option value="personal">Personal</option>
                             <option value="school">School</option>
                             <option value="work">Work</option>
@@ -124,62 +130,63 @@
                             <option value="science">Science</option>
                             <option value="history">History</option>
                             <option value="gallery">Gallery</option>
-                            <option value="reports">Report</option>
+                            <option value="reports">Reports</option>
                             <option value="subjects">Subjects</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Formatting</label>
-                        <div class="formatting-toolabar">
+                        <label>Formatting</label>
+                        <div class="formatting-toolbar">
                             <button type="button" class="format-btn" data-command="bold" title="Bold">
                                 <i class="fas fa-bold"></i>
                             </button>
-                            <button type="button" class="format-btn" data-command="italic" title="italic">
+                            <button type="button" class="format-btn" data-command="italic" title="Italic">
                                 <i class="fas fa-italic"></i>
                             </button>
-                            <button type="button" class="format-btn" data-command="underline" title="underline">
+                            <button type="button" class="format-btn" data-command="underline" title="Underline">
                                 <i class="fas fa-underline"></i>
                             </button>
-                            <button type="button" class="format-btn" data-command="insertUnorderedList" title="Bullet List">
-                                <i class="fas fa-underline"></i>
+                            <button type="button" class="format-btn" data-command="insertUnorderedList"
+                                title="Bullet List">
+                                <i class="fas fa-list-ul"></i>
                             </button>
-                            <button type="button" class="format-btn" data-command="insertOrderedList" title="Numbered List">
-                                <i class="fas fa-underline"></i>
+                            <button type="button" class="format-btn" data-command="insertOrderedList"
+                                title="Numbered List">
+                                <i class="fas fa-list-ol"></i>
                             </button>
-                            <div class="khmer-font-options">
-                                <button type="button" class="khmer-font-btn" data-font="dok" title="khmer Dok Font">
-                                    អក្សរដិត
-                                </button>
-                                <button type="button" class="khmer-font-btn" data-font="dok" title="khmer Dok Font">
-                                    អក្សរទ្រេត
-                                </button>
-                            </div>
+
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="noteContent">Content</label>
-                        <div class="note-content-editor" id="noteContent"></div>
+                        <div class="note-content-editor" id="noteContent" contenteditable="true"
+                            placeholder="Start typing your note here..."></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">
-                            <input type="checkbox" name="" id="noreFavorite"> Mark as Favorite
+                        <label>Tags</label>
+                        <div class="tags-input" id="tagsContainer">
+                            <input type="text" class="tag-input" id="tagInput" placeholder="Type a tag and press Enter">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="noteFavorite"> Mark as Favorite
                         </label>
                     </div>
                 </form>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
-                <button type="button" class="btn btn-success" id="saveAsPdfBtn">Sace as PDF</button>
-                <button type="button" class="btn btn-primary" id="saveNoteBtn">Save Note</button>
+                <button type="button" class="btn btn-success" id="saveAsPdfBtn">Save as PDF</button><button
+                    type="button" class="btn btn-primary" id="saveNoteBtn">Save Note</button>
             </div>
         </div>
     </div>
 
-
-
 </body>
+
 </html>
