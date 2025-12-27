@@ -60,9 +60,9 @@ const clearDownloadsBtn = document.getElementById('clearDownloadsBtn');
 
 // State variables
 let currentFilter = 'all';
-let currentCategiiry = 'all';
+let currentCategory = 'all';
 let searchQuery = '';
-let currentNotedId = null;
+let currentNoteId = null;
 let tags = [];
 let isEditing = false;
 
@@ -174,7 +174,7 @@ function resetForm() {
     noteContent.innerHTML = '';
     tags = [];
     renderTags();
-    currentNotedId = null;
+    currentNoteId = null;
     noteFavorite.checked = false;
 }
 
@@ -324,23 +324,23 @@ async function saveNoteAsPDF() {
 
         // Add content to the temp div
         tempDiv.innerHTML = `
-                    <h1 style="color: #2c3e50; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
-                        ${noteTitle.value}
-                    </h1>
-                    <div style="margin-bottom: 15px; color: #7f8c8d;">
-                        <strong>Date:</strong> ${getCurrentDate()} | 
-                        <strong>Category:</strong> ${capitalizeFirstLetter(noteCategory.value)}
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <strong>Tags:</strong> ${tags.map(tag => `<span style="background-color: #e3f2fd; color: #1a73e8; padding: 3px 8px; border-radius: 12px; font-size: 12px; margin-right: 5px;">${tag}</span>`).join('')}
-                    </div>
-                    <div style="border-top: 1px solid #eaeaea; padding-top: 20px;">
-                        ${noteContent.innerHTML}
-                    </div>
-                    <div style="margin-top: 30px; border-top: 1px solid #eaeaea; padding-top: 10px; font-size: 12px; color: #7f8c8d; text-align: center;">
-                        Generated from Recent Notes App on ${new Date().toLocaleDateString()}
-                    </div>
-                `;
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
+                ${noteTitle.value}
+            </h1>
+            <div style="margin-bottom: 15px; color: #7f8c8d;">
+                <strong>Date:</strong> ${getCurrentDate()} | 
+                <strong>Category:</strong> ${capitalizeFirstLetter(noteCategory.value)}
+            </div>
+            <div style="margin-bottom: 20px;">
+                <strong>Tags:</strong> ${tags.map(tag => `<span style="background-color: #e3f2fd; color: #1a73e8; padding: 3px 8px; border-radius: 12px; font-size: 12px; margin-right: 5px;">${tag}</span>`).join('')}
+            </div>
+            <div style="border-top: 1px solid #eaeaea; padding-top: 20px;">
+                ${noteContent.innerHTML}
+            </div>
+            <div style="margin-top: 30px; border-top: 1px solid #eaeaea; padding-top: 10px; font-size: 12px; color: #7f8c8d; text-align: center;">
+                Generated from Recent Notes App on ${new Date().toLocaleDateString()}
+            </div>
+        `;
 
         // Append to body (temporarily)
         document.body.appendChild(tempDiv);
@@ -433,10 +433,13 @@ async function saveNoteToPDF(noteId) {
     const note = notesData.find(note => note.id === noteId);
     if (!note) return;
 
+    let originalText = '';
+    let button;
+
     try {
         // Show loading message
-        const button = document.querySelector(`.action-btn-pdf[data-id="${noteId}"]`);
-        const originalText = button.innerHTML;
+        button = document.querySelector(`.action-btn-pdf[data-id="${noteId}"]`);
+        originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
         button.disabled = true;
 
@@ -449,23 +452,23 @@ async function saveNoteToPDF(noteId) {
 
         // Add content to the temp div
         tempDiv.innerHTML = `
-                    <h1 style="color: #2c3e50; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
-                        ${note.title}
-                    </h1>
-                    <div style="margin-bottom: 15px; color: #7f8c8d;">
-                        <strong>Date:</strong> ${note.date} | 
-                        <strong>Category:</strong> ${capitalizeFirstLetter(note.category)}
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <strong>Tags:</strong> ${note.tags.map(tag => `<span style="background-color: #e3f2fd; color: #1a73e8; padding: 3px 8px; border-radius: 12px; font-size: 12px; margin-right: 5px;">${tag}</span>`).join('')}
-                    </div>
-                    <div style="border-top: 1px solid #eaeaea; padding-top: 20px;">
-                        ${note.content}
-                    </div>
-                    <div style="margin-top: 30px; border-top: 1px solid #eaeaea; padding-top: 10px; font-size: 12px; color: #7f8c8d; text-align: center;">
-                    Generated from Recent Notes App on ${new Date().toLocaleDateString()}
-                    </div>
-               `;
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
+                ${note.title}
+            </h1>
+            <div style="margin-bottom: 15px; color: #7f8c8d;">
+                <strong>Date:</strong> ${note.date} | 
+                <strong>Category:</strong> ${capitalizeFirstLetter(note.category)}
+            </div>
+            <div style="margin-bottom: 20px;">
+                <strong>Tags:</strong> ${note.tags.map(tag => `<span style="background-color: #e3f2fd; color: #1a73e8; padding: 3px 8px; border-radius: 12px; font-size: 12px; margin-right: 5px;">${tag}</span>`).join('')}
+            </div>
+            <div style="border-top: 1px solid #eaeaea; padding-top: 20px;">
+                ${note.content}
+            </div>
+            <div style="margin-top: 30px; border-top: 1px solid #eaeaea; padding-top: 10px; font-size: 12px; color: #7f8c8d; text-align: center;">
+            Generated from Recent Notes App on ${new Date().toLocaleDateString()}
+            </div>
+       `;
 
         // Append to body (temporarily)
         document.body.appendChild(tempDiv);
@@ -532,10 +535,9 @@ async function saveNoteToPDF(noteId) {
         alert('There was an error generating the PDF. Please try again.');
     } finally {
         // Reset button state
-        const button = document.querySelector(`.action-btn-pdf[data-id="${noteId}"]`);
         if (button) {
-            button.innerHTML = originalText;
-            button.disabled = false;
+        button.innerHTML = originalText;
+        button.disabled = false;
         }
     }
 }
@@ -546,3 +548,246 @@ function getCurrentDate() {
     const options = { month: 'short', day: 'numeric', year: 'numeric' };
     return now.toLocaleDateString('en-US', options);
 }
+
+// Render download history
+function renderDownloadHistory() {
+    // Clear container
+    downloadHistoryList.innerHTML = '';
+
+    // Show empty state if no downloads
+    if (downloadHistory.length === 0){
+        downloadHistoryList.innerHTML = `
+            <div class="empty-state" style="padding: 20px;">
+                <i class="fas fa-download"></i>
+                <p>No downloads yet</p>
+            </div>
+        `; 
+        return;
+    }
+    // Render each download item
+    downloadHistory.forEach(download =>{
+        const downloadItem = document.createElement('div');
+        downloadItem.className = 'download-item';
+        downloadItem.dataset.id = download.id;
+
+        downloadItem.innerHTML = `
+            <div class="download-item-info">
+                <div class="download-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="download-details">
+                    <h4>${download.fileName}</h4>
+                    <p>${download.size}</p>
+                </div>
+            </div>
+            <div class="download-time">${download.timeAgo}</div>
+        `; 
+        downloadHistoryList.appendChild(downloadItem);
+    });
+
+}
+// Clear download history
+function clearDownloadHistory(){
+    if (downloadHistory.length === 0){
+        alert('Download history is already empty.');
+        return;
+    }
+    if (confirm('Are you sure you want to clear all download history?')){
+        downloadHistory = [];
+        localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+        renderDownloadHistory();
+        alert('Download history cleared successfully.');
+    }
+}
+// Render note based on curremt fillers
+function renderNotes(){
+    //Clear container
+    notesContainer.innerHTML = '';
+
+    // Filter notes
+    let filteredNotes = notesData.filter(note => {
+        // Apply search filter
+        if (searchQuery) {
+            const searchContent = note.title.toLowerCase() + ' ' + 
+                                 note.content.toLowerCase() + ' ' + 
+                                 note.tags.join(' ').toLowerCase();
+            if (!searchContent.includes(searchQuery)) {
+                return false;
+            }
+        }
+        // Apply favorites filter
+        if (currentFilter === 'favorites' && ! note.isFavorite){
+            return false;
+        }
+
+        // Apply category filter
+        if (currentCategory !== 'all' && note.category !== currentCategory ){
+            return false;
+        }
+        return true;
+    });
+    // Update notes count
+    notesCount.textContent = `Showing ${filteredNotes.length} note${filteredNotes.length !== 1 ? 's' : ''}`;
+
+    // Show empty state if no notes
+    if (filteredNotes.length === 0){
+        notesContainer.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-sticky-note"></i>
+                <h3>No notes found</h3>
+                <p>${searchQuery || currentFilter !== 'all' || currentCategory !== 'all' ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'Create your first note by clicking the "Add Note" button above!'}</p>
+                ${!searchQuery && currentFilter === 'all' && currentCategory === 'all' ? 
+                    '<button class="btn-empty-state" id="addNoteFromEmpty"><i class="fas fa-plus"></i> Create Your First Note</button>' : ''}
+            </div>
+        `;
+        // Add event listener to the empty state button
+        const addNoteFromEmpty = document.getElementById('addNoteFromEmpty');
+        if (addNoteFromEmpty){
+            addNoteFromEmpty.addEventListener('click', openAddNoteModal);
+        }
+        return;
+    }
+    // Sort by date (newest first)
+    filteredNotes.sort((a, b) => new Date(b.dateISO) - new Date(a.dateISO));
+
+
+    // Render each note
+    filteredNotes.forEach(note => {
+        const noteElement = document.createElement('div');
+        noteElement.className = 'note-card';
+        noteElement.dataset.id = note.id;
+
+        //Highlight search terms in title and content
+        let displayTitle = note.title;
+        let displayContent = note.content;
+
+        if (searchQuery){
+            displayTitle = highlightText(displayTitle, searchQuery);
+            displayContent = highlightText(displayContent,searchQuery);
+        }
+        noteElement.innerHTML = `
+            <div class="note-header">
+                <div>
+                    <div class="note-title">${displayTitle}</div>
+                    <div class="note-date">${note.date}</div>
+                </div>
+                <button class="favorite-btn ${note.isFavorite ? 'favorited' : ''}" data-id="${note.id}">
+                    <i class="fas fa-star"></i>
+                </button>
+            </div>
+            <div class="note-category">${capitalizeFirstLetter(note.category)}</div>
+            <div class="note-content">${displayContent}</div>
+            <div class="note-actions">
+                <div class="note-tags">${note.tags.map(tag => `<span class="note-tag">${tag}</span>`).join('')}</div>
+                <div class="note-card-actions">
+                    <button class="action-btn action-btn-edit" data-id="${note.id}" data-action="edit">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="action-btn action-btn-pdf" data-id="${note.id}" data-action="pdf">
+                        <i class="fas fa-file-pdf"></i> Save to PDF
+                    </button>
+                    <button class="action-btn action-btn-delete" data-id="${note.id}" data-action="delete">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        `;
+        notesContainer.appendChild(noteElement);
+    });
+
+    // Add event listeners to favorite buttons
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', function(){
+            const noteId = parseInt(this.dataset.id);
+            toggleFavorite(noteId);
+        });
+    });
+    //Add event listeners to edit buttons
+    document.querySelectorAll('.action-btn-edit').forEach(btn => {
+        btn.addEventListener('click', function(){
+            const noteId = parseInt(this.dataset.id);
+            editNote(noteId);
+        });
+    });
+    // Add event listeners to PDF buttons
+    document.querySelectorAll('.action-btn-pdf').forEach(btn =>{
+        btn.addEventListener('click', function(){
+            const noteId = parseInt(this.dataset.id);
+            saveNoteToPDF(noteId);
+        });
+    });
+    //Add event listeners to delete buttons 
+    document.querySelectorAll('.action-btn-delete').forEach(btn =>{
+        btn.addEventListener('click', function(){
+            const noteId = parseInt(this.dataset.id);
+            deleteNote(noteId);
+        });
+    });
+
+}
+// Toggle favorite status
+function toggleFavorite(noteId){
+    const noteIndex = notesData.findIndex(note => note.id === noteId);
+    if (noteIndex !== -1) {
+        notesData[noteIndex].isFavorite = !notesData[noteIndex].isFavorite;
+        
+        // Save to localStorage
+        localStorage.setItem('recentNotes', JSON.stringify(notesData));
+        
+        renderNotes();
+    }
+}
+// Edit an existing note
+function editNote(noteId){
+    const note = notesData.find(note => note.id === noteId);
+    if (!note) return;
+
+    noteTitle.value = note.title;
+    noteCategory.value = note.category;
+    noteContent.innerHTML = note.content;
+    noteFavorite.checked = note.isFavorite;
+    tags = [...note.tags];
+
+    renderTags();
+    modalTitle.textContent = 'Edit Note';
+    noteModal.style.display = 'flex';
+
+    currentNoteId = noteId; 
+    isEditing = true;
+}
+
+// Delete a note
+function deleteNote(noteId){
+    const note = notesData.find(note => note.id === noteId);
+    if (!note) return;
+    if (confirm(`Are you sure you want to delete "${note.title}"? This action cannot be undone.`)) {
+        // Remove note from data
+        notesData = notesData.filter(note => note.id !== noteId);
+        
+        // Save to localStorage
+        localStorage.setItem('recentNotes', JSON.stringify(notesData));
+        
+        // Re-render notes
+        renderNotes();
+        
+        // Show success message
+        alert(`Note "${note.title}" has been deleted successfully.`);
+    }
+}
+// Highlight search terms in text
+function highlightText(text, query){
+    if (!query) return text;
+    // Create a regex that matches the query, ignoring HTML tags
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    // Only highlight text outside HTML tags
+        return text.replace(/(<[^>]*>)|([^<]+)/g, function(match, tag, text) {
+            if (tag) return tag;
+            if (text) return text.replace(regex, '<span class="highlight">$1</span>');
+            return match;
+        });
+}
+// Capitalize first letter
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
