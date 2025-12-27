@@ -546,3 +546,4 @@ function getCurrentDate() {
     const options = { month: 'short', day: 'numeric', year: 'numeric' };
     return now.toLocaleDateString('en-US', options);
 }
+
