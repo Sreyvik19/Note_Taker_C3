@@ -536,8 +536,8 @@ async function saveNoteToPDF(noteId) {
     } finally {
         // Reset button state
         if (button) {
-        button.innerHTML = originalText;
-        button.disabled = false;
+            button.innerHTML = originalText;
+            button.disabled = false;
         }
     }
 }
@@ -555,17 +555,17 @@ function renderDownloadHistory() {
     downloadHistoryList.innerHTML = '';
 
     // Show empty state if no downloads
-    if (downloadHistory.length === 0){
+    if (downloadHistory.length === 0) {
         downloadHistoryList.innerHTML = `
             <div class="empty-state" style="padding: 20px;">
                 <i class="fas fa-download"></i>
                 <p>No downloads yet</p>
             </div>
-        `; 
+        `;
         return;
     }
     // Render each download item
-    downloadHistory.forEach(download =>{
+    downloadHistory.forEach(download => {
         const downloadItem = document.createElement('div');
         downloadItem.className = 'download-item';
         downloadItem.dataset.id = download.id;
@@ -581,18 +581,18 @@ function renderDownloadHistory() {
                 </div>
             </div>
             <div class="download-time">${download.timeAgo}</div>
-        `; 
+        `;
         downloadHistoryList.appendChild(downloadItem);
     });
 
 }
 // Clear download history
-function clearDownloadHistory(){
-    if (downloadHistory.length === 0){
+function clearDownloadHistory() {
+    if (downloadHistory.length === 0) {
         alert('Download history is already empty.');
         return;
     }
-    if (confirm('Are you sure you want to clear all download history?')){
+    if (confirm('Are you sure you want to clear all download history?')) {
         downloadHistory = [];
         localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
         renderDownloadHistory();
@@ -600,7 +600,7 @@ function clearDownloadHistory(){
     }
 }
 // Render note based on curremt fillers
-function renderNotes(){
+function renderNotes() {
     //Clear container
     notesContainer.innerHTML = '';
 
@@ -608,20 +608,20 @@ function renderNotes(){
     let filteredNotes = notesData.filter(note => {
         // Apply search filter
         if (searchQuery) {
-            const searchContent = note.title.toLowerCase() + ' ' + 
-                                 note.content.toLowerCase() + ' ' + 
-                                 note.tags.join(' ').toLowerCase();
+            const searchContent = note.title.toLowerCase() + ' ' +
+                note.content.toLowerCase() + ' ' +
+                note.tags.join(' ').toLowerCase();
             if (!searchContent.includes(searchQuery)) {
                 return false;
             }
         }
         // Apply favorites filter
-        if (currentFilter === 'favorites' && ! note.isFavorite){
+        if (currentFilter === 'favorites' && !note.isFavorite) {
             return false;
         }
 
         // Apply category filter
-        if (currentCategory !== 'all' && note.category !== currentCategory ){
+        if (currentCategory !== 'all' && note.category !== currentCategory) {
             return false;
         }
         return true;
@@ -630,19 +630,19 @@ function renderNotes(){
     notesCount.textContent = `Showing ${filteredNotes.length} note${filteredNotes.length !== 1 ? 's' : ''}`;
 
     // Show empty state if no notes
-    if (filteredNotes.length === 0){
+    if (filteredNotes.length === 0) {
         notesContainer.innerHTML = `
             <div class="empty-state">
                 <i class="fas fa-sticky-note"></i>
                 <h3>No notes found</h3>
                 <p>${searchQuery || currentFilter !== 'all' || currentCategory !== 'all' ? 'Try adjusting your search or filter to find what you\'re looking for.' : 'Create your first note by clicking the "Add Note" button above!'}</p>
-                ${!searchQuery && currentFilter === 'all' && currentCategory === 'all' ? 
-                    '<button class="btn-empty-state" id="addNoteFromEmpty"><i class="fas fa-plus"></i> Create Your First Note</button>' : ''}
+                ${!searchQuery && currentFilter === 'all' && currentCategory === 'all' ?
+                '<button class="btn-empty-state" id="addNoteFromEmpty"><i class="fas fa-plus"></i> Create Your First Note</button>' : ''}
             </div>
         `;
         // Add event listener to the empty state button
         const addNoteFromEmpty = document.getElementById('addNoteFromEmpty');
-        if (addNoteFromEmpty){
+        if (addNoteFromEmpty) {
             addNoteFromEmpty.addEventListener('click', openAddNoteModal);
         }
         return;
@@ -661,9 +661,9 @@ function renderNotes(){
         let displayTitle = note.title;
         let displayContent = note.content;
 
-        if (searchQuery){
+        if (searchQuery) {
             displayTitle = highlightText(displayTitle, searchQuery);
-            displayContent = highlightText(displayContent,searchQuery);
+            displayContent = highlightText(displayContent, searchQuery);
         }
         noteElement.innerHTML = `
             <div class="note-header">
@@ -697,28 +697,28 @@ function renderNotes(){
 
     // Add event listeners to favorite buttons
     document.querySelectorAll('.favorite-btn').forEach(btn => {
-        btn.addEventListener('click', function(){
+        btn.addEventListener('click', function () {
             const noteId = parseInt(this.dataset.id);
             toggleFavorite(noteId);
         });
     });
     //Add event listeners to edit buttons
     document.querySelectorAll('.action-btn-edit').forEach(btn => {
-        btn.addEventListener('click', function(){
+        btn.addEventListener('click', function () {
             const noteId = parseInt(this.dataset.id);
             editNote(noteId);
         });
     });
     // Add event listeners to PDF buttons
-    document.querySelectorAll('.action-btn-pdf').forEach(btn =>{
-        btn.addEventListener('click', function(){
+    document.querySelectorAll('.action-btn-pdf').forEach(btn => {
+        btn.addEventListener('click', function () {
             const noteId = parseInt(this.dataset.id);
             saveNoteToPDF(noteId);
         });
     });
     //Add event listeners to delete buttons 
-    document.querySelectorAll('.action-btn-delete').forEach(btn =>{
-        btn.addEventListener('click', function(){
+    document.querySelectorAll('.action-btn-delete').forEach(btn => {
+        btn.addEventListener('click', function () {
             const noteId = parseInt(this.dataset.id);
             deleteNote(noteId);
         });
@@ -726,19 +726,19 @@ function renderNotes(){
 
 }
 // Toggle favorite status
-function toggleFavorite(noteId){
+function toggleFavorite(noteId) {
     const noteIndex = notesData.findIndex(note => note.id === noteId);
     if (noteIndex !== -1) {
         notesData[noteIndex].isFavorite = !notesData[noteIndex].isFavorite;
-        
+
         // Save to localStorage
         localStorage.setItem('recentNotes', JSON.stringify(notesData));
-        
+
         renderNotes();
     }
 }
 // Edit an existing note
-function editNote(noteId){
+function editNote(noteId) {
     const note = notesData.find(note => note.id === noteId);
     if (!note) return;
 
@@ -752,39 +752,39 @@ function editNote(noteId){
     modalTitle.textContent = 'Edit Note';
     noteModal.style.display = 'flex';
 
-    currentNoteId = noteId; 
+    currentNoteId = noteId;
     isEditing = true;
 }
 
 // Delete a note
-function deleteNote(noteId){
+function deleteNote(noteId) {
     const note = notesData.find(note => note.id === noteId);
     if (!note) return;
     if (confirm(`Are you sure you want to delete "${note.title}"? This action cannot be undone.`)) {
         // Remove note from data
         notesData = notesData.filter(note => note.id !== noteId);
-        
+
         // Save to localStorage
         localStorage.setItem('recentNotes', JSON.stringify(notesData));
-        
+
         // Re-render notes
         renderNotes();
-        
+
         // Show success message
         alert(`Note "${note.title}" has been deleted successfully.`);
     }
 }
 // Highlight search terms in text
-function highlightText(text, query){
+function highlightText(text, query) {
     if (!query) return text;
     // Create a regex that matches the query, ignoring HTML tags
-        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     // Only highlight text outside HTML tags
-        return text.replace(/(<[^>]*>)|([^<]+)/g, function(match, tag, text) {
-            if (tag) return tag;
-            if (text) return text.replace(regex, '<span class="highlight">$1</span>');
-            return match;
-        });
+    return text.replace(/(<[^>]*>)|([^<]+)/g, function (match, tag, text) {
+        if (tag) return tag;
+        if (text) return text.replace(regex, '<span class="highlight">$1</span>');
+        return match;
+    });
 }
 // Capitalize first letter
 function capitalizeFirstLetter(string) {

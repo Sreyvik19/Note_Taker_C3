@@ -10,12 +10,30 @@ body {
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
-    padding: 20px;
-    max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+nav {
+    width: 100%;
+    background: linear-gradient(130deg, #4361ee, #3a0ca3);
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 13px;
+}
+
+nav img {
+    width: 80px;
+    height: 70px;
+    margin-left: 20px;
 }
 
 .app-container {
+    width: 80%;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -291,13 +309,18 @@ body {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 12px 24px;
-    font-weight: 600;
+    padding: 12px;
+    font-weight: 500;
+    font-size: 16px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     transition: background-color 0.2s;
+}
+
+.btn-empty-state i {
+    font-size: 60px;
 }
 
 .btn-empty-state:hover {
