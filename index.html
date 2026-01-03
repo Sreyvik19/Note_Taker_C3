@@ -1,0 +1,90 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/login.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <nav>
+        <img src="./image/download (17).png" alt="">
+        <h2>Note Taker</h2>
+    </nav>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">
+                <i class="fas fa-lock"></i>
+                SecureNotes
+            </div>
+            <div class="welcome-text">
+                <h1>Welcome Back</h1>
+                <p>Access your encrypted notes from anywhere. Your data is secured with military-grade encryption.</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h3>End-to-End Encryption</h3>
+                        <p>Your data is encrypted before it leaves your device</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>
+                        <h3>Cross-Platform</h3>
+                        <p>Access on desktop, tablet, or mobile</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cloud"></i>
+                    <div>
+                        <h3>Cloud Sync</h3>
+                        <p>Automatic sync across all your devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="error-message" id="errorMessage">
+                        Please try again.
+                    </div>
+
+                    <button type="submit" class="login-btn" id="loginButton">
+                        <span id="buttonText">Login</span>
+                        <i class="fas fa-spinner fa-spin" id="loadingIcon" style="display: none;"></i>
+                    </button>
+                </form>
+
+                <div class="signup-link">
+                    Don't have an account? <a href="main.html">Sign up now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+>>>>>>> 02e17141af3ac5e124ed36ee44c5562c36f2dd9d
