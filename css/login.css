@@ -1,234 +1,215 @@
-/* =====================
-   Global Styles
-===================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
+  /* /Global style/ */
 
-body {
-    background-color: #f5f7fa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    gap: 40px;
-}
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+  }
 
-/* =====================
-   Navbar
-===================== */
-nav {
-    width: 100%;
-    background: linear-gradient(130deg, #4361ee, #3a0ca3);
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    color: white;
-    padding: 10px 20px;
-}
+  body {
+      background-color: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+      align-items: center;
+      min-height: 100vh;
+      gap: 60px;
+  }
 
-nav img {
-    width: 60px;
-    height: auto;
-}
+  nav {
+      width: 100%;
+      background: linear-gradient(130deg, #4361ee, #3a0ca3);
+      display: flex;
+      align-items: center;
+      color: white;
+      gap: 13px;
+  }
 
-nav h2 {
-    font-size: 22px;
-}
+  nav img {
+      width: 80px;
+      height: 70px;
+      margin-left: 20px;
+  }
 
-/* =====================
-   Container
-===================== */
-.container {
-    display: flex;
-    width: 90%;
-    max-width: 900px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+  .container {
+      display: flex;
+      width: 800px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
 
-/* =====================
-   Panels
-===================== */
-.left-panel,
-.right-panel {
-    flex: 1;
-    padding: 40px;
-}
+  .left-panel {
+      flex: 1;
+      padding: 50px;
+      background: linear-gradient(135deg, #4361ee, #3a0ca3);
+      color: white;
+  }
 
-.left-panel {
-    background: linear-gradient(135deg, #4361ee, #3a0ca3);
-    color: white;
-}
+  .right-panel {
+      flex: 1;
+      padding: 50px;
+  }
 
-/* =====================
-   Left Content
-===================== */
-.logo {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-}
+  .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+  }
 
-.logo i {
-    margin-right: 10px;
-    font-size: 30px;
-}
+  .logo i {
+      margin-right: 10px;
+      font-size: 32px;
+  }
 
-.welcome-text h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
+  .welcome-text h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+  }
 
-.welcome-text p {
-    font-size: 15px;
-    line-height: 1.6;
-}
+  .features {
+      margin-top: 40px;
+  }
 
-.features {
-    margin-top: 30px;
-}
+  .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+  }
 
-.feature {
-    display: flex;
-    align-items: center;
-    margin-bottom: 18px;
-}
+  .feature i {
+      margin-right: 15px;
+      font-size: 20px;
+      color: #4cc9f0;
+  }
 
-.feature i {
-    margin-right: 15px;
-    font-size: 20px;
-    color: #4cc9f0;
-}
+  .form-container h2 {
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+  }
 
-/* =====================
-   Form
-===================== */
-.form-container h2 {
-    color: #333;
-    margin-bottom: 25px;
-    font-size: 26px;
-}
+  .input-group {
+      margin-bottom: 25px;
+  }
 
-.input-group {
-    margin-bottom: 20px;
-}
+  .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+  }
 
-.input-group label {
-    display: block;
-    margin-bottom: 6px;
-    color: #555;
-}
+  .input-group input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e1e5eb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border 0.3s;
+  }
 
-.input-group input {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #e1e5eb;
-    border-radius: 8px;
-    font-size: 15px;
-}
+  .input-group input:focus {
+      border-color: #4361ee;
+      outline: none;
+  }
 
-.input-group input:focus {
-    border-color: #4361ee;
-    outline: none;
-}
+  .login-btn {
+      width: 100%;
+      padding: 15px;
+      background: #4361ee;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+  }
 
-.login-btn {
-    width: 100%;
-    padding: 14px;
-    background: #4361ee;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-}
+  .login-btn:hover {
+      background: #3a0ca3;
+  }
 
-.login-btn:hover {
-    background: #3a0ca3;
-}
+  .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+  }
 
-.signup-link {
-    text-align: center;
-    margin-top: 20px;
-}
+  .signup-link a {
+      color: #4361ee;
+      text-decoration: none;
+      font-weight: 500;
+  }
 
-.signup-link a {
-    color: #4361ee;
-    text-decoration: none;
-    font-weight: 500;
-}
+  .error-message {
+      color: #e63946;
+      margin-top: 10px;
+      display: none;
+  }
 
-.error-message {
-    color: #e63946;
-    margin-top: 10px;
-    display: none;
-}
-
-/* =====================
+  /* =====================
    Tablet (≤ 900px)
 ===================== */
-@media (max-width: 900px) {
-    .container {
-        width: 95%;
-    }
+  @media (max-width: 900px) {
+      .container {
+          width: 95%;
+      }
 
-    .left-panel,
-    .right-panel {
-        padding: 30px;
-    }
+      .left-panel,
+      .right-panel {
+          padding: 30px;
+      }
 
-    .welcome-text h1 {
-        font-size: 24px;
-    }
-}
+      .welcome-text h1 {
+          font-size: 24px;
+      }
+  }
 
-/* =====================
+  /* =====================
    Mobile (≤ 600px)
 ===================== */
-@media (max-width: 600px) {
-    body {
-        gap: 20px;
-    }
+  @media (max-width: 600px) {
+      body {
+          gap: 20px;
+      }
 
-    nav {
-        justify-content: center;
-    }
+      nav {
+          justify-content: start;
+      }
 
-    nav img {
-        width: 50px;
-    }
+      nav img {
+          width: 50px;
+      }
 
-    nav h2 {
-        font-size: 20px;
-    }
+      nav h2 {
+          font-size: 18px;
+      }
 
-    .container {
-        flex-direction: column;
-        border-radius: 5;
-    }
+      .container {
+          flex-direction: column;
+          border-radius: 5;
+      }
 
-    .left-panel {
-        text-align: center;
-    }
+      .left-panel {
+          text-align: center;
+      }
 
-    .features {
-        display: none; /* hide features for cleaner mobile UI */
-    }
+      .features {
+          display: none;
+          /* hide features for cleaner mobile UI */
+      }
 
-    .logo {
-        justify-content: center;
-    }
+      .logo {
+          justify-content: center;
+      }
 
-    .form-container h2 {
-        text-align: center;
-    }
-}
+      .form-container h2 {
+          text-align: center;
+      }
+  }

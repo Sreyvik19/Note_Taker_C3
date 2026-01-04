@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* All CSS styles remain the same as in your original code */
 * {
     margin: 0;
@@ -743,7 +741,6 @@ nav img {
     }
 
     .formatting-toolbar {
-        flex-direction: column;
         align-items: flex-start;
     }
 
@@ -761,4 +758,3 @@ nav img {
         align-self: flex-end;
     }
 }
->>>>>>> 02e17141af3ac5e124ed36ee44c5562c36f2dd9d
