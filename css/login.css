@@ -1,5 +1,4 @@
   /* /Global style/ */
-
   * {
       margin: 0;
       padding: 0;
@@ -151,24 +150,6 @@
       color: #e63946;
       margin-top: 10px;
       display: none;
-  }
-
-  /* =====================
-   Tablet (≤ 900px)
-===================== */
-  @media (max-width: 900px) {
-      .container {
-          width: 95%;
-      }
-
-      .left-panel,
-      .right-panel {
-          padding: 30px;
-      }
-
-      .welcome-text h1 {
-          font-size: 24px;
-      }
   }
 
   /* =====================
