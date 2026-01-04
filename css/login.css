@@ -1,152 +1,215 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
+  /* /Global style/ */
 
-body {
-    background-color: #f5f7fa;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    min-height: 100vh;
-    gap: 60px;
-}
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+  }
 
-nav {
-    width: 100%;
-    background: linear-gradient(130deg, #4361ee, #3a0ca3);
-    display: flex;
-    align-items: center;
-    color: white;
-    gap: 13px;
-}
+  body {
+      background-color: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+      align-items: center;
+      min-height: 100vh;
+      gap: 60px;
+  }
 
-nav img {
-    width: 80px;
-    height: 70px;
-    margin-left: 20px;
-}
+  nav {
+      width: 100%;
+      background: linear-gradient(130deg, #4361ee, #3a0ca3);
+      display: flex;
+      align-items: center;
+      color: white;
+      gap: 13px;
+  }
 
-.container {
-    display: flex;
-    width: 800px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+  nav img {
+      width: 80px;
+      height: 70px;
+      margin-left: 20px;
+  }
 
-.left-panel {
-    flex: 1;
-    padding: 50px;
-    background: linear-gradient(135deg, #4361ee, #3a0ca3);
-    color: white;
-}
+  .container {
+      display: flex;
+      width: 800px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
 
-.right-panel {
-    flex: 1;
-    padding: 50px;
-}
+  .left-panel {
+      flex: 1;
+      padding: 50px;
+      background: linear-gradient(135deg, #4361ee, #3a0ca3);
+      color: white;
+  }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-}
+  .right-panel {
+      flex: 1;
+      padding: 50px;
+  }
 
-.logo i {
-    margin-right: 10px;
-    font-size: 32px;
-}
+  .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+  }
 
-.welcome-text h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
+  .logo i {
+      margin-right: 10px;
+      font-size: 32px;
+  }
 
-.features {
-    margin-top: 40px;
-}
+  .welcome-text h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+  }
 
-.feature {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
+  .features {
+      margin-top: 40px;
+  }
 
-.feature i {
-    margin-right: 15px;
-    font-size: 20px;
-    color: #4cc9f0;
-}
+  .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+  }
 
-.form-container h2 {
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
-}
+  .feature i {
+      margin-right: 15px;
+      font-size: 20px;
+      color: #4cc9f0;
+  }
 
-.input-group {
-    margin-bottom: 25px;
-}
+  .form-container h2 {
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+  }
 
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
-}
+  .input-group {
+      margin-bottom: 25px;
+  }
 
-.input-group input {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #e1e5eb;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border 0.3s;
-}
+  .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+  }
 
-.input-group input:focus {
-    border-color: #4361ee;
-    outline: none;
-}
+  .input-group input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e1e5eb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border 0.3s;
+  }
 
-.login-btn {
-    width: 100%;
-    padding: 15px;
-    background: #4361ee;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s;
-}
+  .input-group input:focus {
+      border-color: #4361ee;
+      outline: none;
+  }
 
-.login-btn:hover {
-    background: #3a0ca3;
-}
+  .login-btn {
+      width: 100%;
+      padding: 15px;
+      background: #4361ee;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+  }
 
-.signup-link {
-    text-align: center;
-    margin-top: 20px;
-    color: #666;
-}
+  .login-btn:hover {
+      background: #3a0ca3;
+  }
 
-.signup-link a {
-    color: #4361ee;
-    text-decoration: none;
-    font-weight: 500;
-}
+  .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+  }
 
-.error-message {
-    color: #e63946;
-    margin-top: 10px;
-    display: none;
-}
+  .signup-link a {
+      color: #4361ee;
+      text-decoration: none;
+      font-weight: 500;
+  }
+
+  .error-message {
+      color: #e63946;
+      margin-top: 10px;
+      display: none;
+  }
+
+  /* =====================
+   Tablet (≤ 900px)
+===================== */
+  @media (max-width: 900px) {
+      .container {
+          width: 95%;
+      }
+
+      .left-panel,
+      .right-panel {
+          padding: 30px;
+      }
+
+      .welcome-text h1 {
+          font-size: 24px;
+      }
+  }
+
+  /* =====================
+   Mobile (≤ 600px)
+===================== */
+  @media (max-width: 600px) {
+      body {
+          gap: 20px;
+      }
+
+      nav {
+          justify-content: start;
+      }
+
+      nav img {
+          width: 50px;
+      }
+
+      nav h2 {
+          font-size: 18px;
+      }
+
+      .container {
+          flex-direction: column;
+          border-radius: 5;
+      }
+
+      .left-panel {
+          text-align: center;
+      }
+
+      .features {
+          display: none;
+          /* hide features for cleaner mobile UI */
+      }
+
+      .logo {
+          justify-content: center;
+      }
+
+      .form-container h2 {
+          text-align: center;
+      }
+  }

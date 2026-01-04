@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Loading state
-        buttonText.textContent = "Signing in...";
+        buttonText.textContent = "Logging in...";
         loadingIcon.style.display = "inline-block";
         loginButton.disabled = true;
 
